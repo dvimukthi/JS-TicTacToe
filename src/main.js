@@ -30,7 +30,14 @@ function initializeGame() {
   RestartBtn.addEventListener("click", restartGame);
   StatusText.textContent = `${currentPlayer}'s turn`;
 }
-function cellClicked() {}
+function cellClicked() {
+  const CellIndex = this.getAttribute("CellIndex");
+
+  if (options[CellIndex] != "" || !running) {
+    return;
+  }
+  updateCell(this, CellIndex);
+}
 function updateCell(cell, index) {}
 function changePlayer() {}
 function checkWinner() {}
