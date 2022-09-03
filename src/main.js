@@ -52,5 +52,33 @@ function changePlayer() {
   StatusText.textContent = `${currentPlayer}'s turn`;
 }
 
-function checkWinner() {}
+function checkWinner() {
+  let roundWon = false;
+
+  for (let i = 0; i < WinConditions.length; i++) {
+    const condition = WinConditions[i];
+    const cellA = options[condition[0]];
+    const cellB = options[condition[1]];
+    const cellC = options[condition[2]];
+
+    if (cellA == "" || cellB == "" || cellC == "") {
+      continue;
+    }
+    if (cellA == cellB && cellB == cellC) {
+      roundWon = true;
+      break;
+    }
+  }
+
+  if (roundWon) {
+    StatusText.textContent = `${currentPlayer} wins!`;
+    running = false;
+  } else if (!options.includes("")) {
+    StatusText.textContent = `Draw!`;
+    running = false;
+  } else {
+    changePlayer();
+  }
+}
+
 function restartGame() {}
